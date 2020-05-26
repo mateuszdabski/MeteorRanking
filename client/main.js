@@ -4,7 +4,7 @@ PlayersList = new Mongo.Collection('players');
 
 Template.leaderboard.helpers({
   'player': function(){
-      return PlayersList.find();
+      return PlayersList.find({}, {sort: {score: -1, name: 1} });
   },
   'selectedClass': function(){
     var playerId = this._id;
