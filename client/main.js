@@ -2,6 +2,8 @@ import './main.html';
 
 PlayersList = new Mongo.Collection('players');
 
+Meteor.subscribe('thePlayers');
+
 Template.leaderboard.helpers({
   'player': function(){
       return PlayersList.find({}, {sort: {score: -1, name: 1} });
@@ -22,15 +24,15 @@ Template.leaderboard.events({
   },
   'click .increment': function(){
     var selectedPlayer = Session.get('selectedPlayer');
-    PlayersList.update(selectedPlayer, {$inc: {score: 1}});
+    Meteor.call('modifyPlayerScore', selectedPlayer, 1);
   },
   'click .decrement': function(){
     var selectedPlayer = Session.get('selectedPlayer');
-    PlayersList.update(selectedPlayer, {$inc: {score: -1}});
+    Meteor.call('modifyPlayerScore', selectedPlayer, -1);
   },
   'click .remove': function(){
     var selectedPlayer = Session.get('selectedPlayer');
-    PlayersList.remove(selectedPlayer);
+    Meteor.call('removePlayer', selectedPlayer);
   }
 });
 
@@ -38,9 +40,6 @@ Template.addPlayerForm.events({
   'submit form': function(event){
     event.preventDefault();
     var playerName = event.target.playerName.value;
-    PlayersList.insert({
-      name: playerName,
-      score: 0
-    });
+    Meteor.call('insertPlayer', playerName);
   }
 });

@@ -4,11 +4,11 @@
 
 <body>
   <h1>Leaderboard</h1>
+  {{> addPlayerForm}}
   {{> leaderboard}}
 </body>
 
 <template name="leaderboard">
-  {{> addPlayerForm}}
   <ul>
     {{#each player}}
       <li class="player {{selectedClass}}">{{name}}: {{score}}</li>
