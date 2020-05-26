@@ -9,6 +9,7 @@
 </body>
 
 <template name="leaderboard">
+  <input type="button" id="sortButton" class="sort" value="Sort from the lowest">
   <ul>
     {{#each player}}
       <li class="player {{selectedClass}}">{{name}}: {{score}}</li>
@@ -21,7 +22,7 @@
 </template>
 
 <template name="addPlayerForm">
-  <form>
+  <form id="addPlayerForm1">
   <input type="text" name="playerName">
   <input type="submit" value="Add Player">
   </form>
