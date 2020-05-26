@@ -27,6 +27,10 @@ Template.leaderboard.events({
   'click .decrement': function(){
     var selectedPlayer = Session.get('selectedPlayer');
     PlayersList.update(selectedPlayer, {$inc: {score: -1}});
+  },
+  'click .remove': function(){
+    var selectedPlayer = Session.get('selectedPlayer');
+    PlayersList.remove(selectedPlayer);
   }
 });
 
