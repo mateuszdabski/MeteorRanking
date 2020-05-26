@@ -29,3 +29,14 @@ Template.leaderboard.events({
     PlayersList.update(selectedPlayer, {$inc: {score: -1}});
   }
 });
+
+Template.addPlayerForm.events({
+  'submit form': function(event){
+    event.preventDefault();
+    var playerName = event.target.playerName.value;
+    PlayersList.insert({
+      name: playerName,
+      score: 0
+    });
+  }
+});

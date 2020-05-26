@@ -8,6 +8,7 @@
 </body>
 
 <template name="leaderboard">
+  {{> addPlayerForm}}
   <ul>
     {{#each player}}
       <li class="player {{selectedClass}}">{{name}}: {{score}}</li>
@@ -15,5 +16,13 @@
   </ul>
   <input type="button" class="increment" value="Add point">
   <input type="button" class="decrement" value="Take point">
+  
+</template>
+
+<template name="addPlayerForm">
+  <form>
+  <input type="text" name="playerName">
+  <input type="submit" value="Add Player">
+  </form>
 </template>
   
